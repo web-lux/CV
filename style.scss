@@ -1,0 +1,243 @@
+* {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: normal;
+  color: inherit;
+}
+
+body {
+  /** VARIABLES **/
+
+  /* COULEURS */
+  --background: #fafcff;
+  --primary: #d1345b;
+  --secondary: #e8f1fc;
+  --icon-RS: #b9d0f4; /* Utilisé pour les icons de réseaux sociaux ; Celles de contact utilisent --primary */
+  --color: #1b3654; /* Utilisé pour la couleur de texte */
+
+  /* Surcouche de CSS pour que les SVG changent de couleurs en accord avec la valeur des variables de couleurs */
+
+  .primary {
+    /* Icon téléphone, mail et lieu, sparkles de droite */
+    fill: var(--primary);
+  }
+
+  .secondary {
+    /* Icon linkedin, site internet, sparkles de gauche */
+    fill: var(--icon-RS);
+  }
+
+  #github-icon {
+    /* Icon Github, qui fonctionne en stroke plutôt qu'en fill */
+    stroke: var(--icon-RS);
+  }
+
+  /** TYPOGRAPHIE **/
+  --title: 'Vampiro One', cursive;
+  --text: 'Alegreya', serif;
+  --size-title: 20px;
+  --size-text: 16px;
+
+  /* MARGE */
+  --padding-mobile: 30px;
+  --padding-deskop: 20px;
+
+  /* STYLE */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px; /* évite que main#container soit rogné en dessous de la taille 320px*/
+}
+
+/* STYLE BASIQUE DES ELEMENTS HTML */
+
+h2 {
+  font-family: var(--title);
+  font-size: var(--size-title);
+  color: var(--color);
+  margin-bottom: 10px;
+}
+
+span,
+li,
+p {
+  font-size: var(--size-text);
+  font-family: var(--text);
+}
+
+p {
+  line-height: 150%;
+}
+
+strong {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* STYLE SPECIFIQUE */
+
+.container {
+  display: flex;
+  max-width: 800px;
+  background-color: var(--background);
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
+}
+
+aside /* COLONNE GAUCHE */ {
+  max-width: 285px;
+  background-color: var(--secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: var(--padding-deskop);
+
+  @media screen and (max-width: 500px) {
+    max-width: 100%;
+    align-items: stretch;
+    padding: var(--padding-mobile);
+  }
+
+  #photo {
+    position: relative;
+    background-image: url(images/photo.jpg);
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    background-size: cover;
+  }
+
+  #sparkles {
+    position: absolute;
+    right: -20%;
+  }
+
+  #compteur {
+    position: absolute;
+    bottom: -10px;
+    right: 50%;
+    transform: translateX(50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: var(--background);
+    font-family: inherit;
+    border-radius: 5px;
+    padding: 2px 4px;
+  }
+
+  > section {
+    width: 100%;
+  }
+}
+
+section#contact {
+  li {
+    display: flex;
+    gap: 8px;
+
+    div {
+      background-color: var(--background);
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+section#competences {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h2 {
+    margin-bottom: 0; /* Autrement c'est trop avec le gap de la grid */
+  }
+
+  ul#hard-skills {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fit, 60px);
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  ul#soft-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+
+    li {
+      background-color: var(--background);
+      border-radius: 20px;
+      padding: 2px 8px;
+    }
+  }
+}
+
+/* COLONNE DROITE */
+
+main {
+  padding: var(--padding-deskop);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%; /* Autrement ça empiète sur les 240px de l'Aside*/
+
+  @media screen and (max-width: 500px) {
+    padding: var(--padding-mobile);
+  }
+
+  header {
+    h1 {
+      font-family: var(--title);
+      font-size: 28px;
+    }
+
+    p {
+      font-size: calc(var(--size-text) + 2px);
+    }
+  }
+}
+
+.bloc-texte /* Utilisé pour les blocs de job / école dans "expériences" et "formations" */ {
+  ul {
+    margin-top: 10px;
+  }
+
+  span {
+    strong {
+      font-size: calc(var(--size-text) + 2px);
+    }
+  }
+
+  p {
+    text-align: justify;
+
+    strong {
+      color: inherit;
+      font-style: italic;
+    }
+
+    em {
+      display: block;
+      color: var(--primary);
+    }
+  }
+}
