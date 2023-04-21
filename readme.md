@@ -2,6 +2,8 @@
 
 Un projet réalisé dans le cadre de la formation dev front de Simplon.
 
+[Consultable ici.](https://web-lux.github.io/CV/)
+
 ## Énoncé
 
 - Construire un CV, dans une version page Web
